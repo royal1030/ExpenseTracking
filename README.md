@@ -14,7 +14,7 @@ This Expense Tracking application enables following main functions (or features)
 10. Redux to manage application's state 
 
 Technology Used:
-ReactJs,NodeJs, ExpressJs,MongoDB, Mongoose,Redux
+ReactJs,NodeJs, ExpressJs,MongoDB, Mongoose,Redux, Javascript, 
 
 
 #Sign Up Page:
