@@ -31,7 +31,7 @@ ReactJs,NodeJs, ExpressJs,MongoDB, Mongoose,Redux, Javascript,
 #Home Page:
 
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/88614647/220413815-2458f5fc-b0e6-40fa-90b0-5845b7c3e953.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/88614647/220421697-c2fd58c0-5d61-496e-ba6c-6c85ed204877.png">
 
 
 #Add New Transaction:
@@ -43,5 +43,5 @@ ReactJs,NodeJs, ExpressJs,MongoDB, Mongoose,Redux, Javascript,
 #Delete Transaction:
 
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/88614647/220417347-8a3ba6cd-0c31-4591-838f-bbe25c905ecc.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/88614647/220421988-a743df66-26e4-4307-a65e-8e3f5f156ae7.png">
 
