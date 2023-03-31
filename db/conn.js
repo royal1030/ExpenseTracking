@@ -24,5 +24,6 @@
 const mongoose=require('mongoose');
 mongoose.set('strictQuery', false);
 
-const dbname=process.env.DB_NAME;
+// const dbname=process.env.DB_NAME;
+const dbname="EXPENSE_TRACK";
 mongoose.connect(`mongodb://localhost:27017/${dbname}`, { useNewUrlParser: true }).then(()=>console.log("connection successfull (database )...")).catch( (err)=>console.log(err));
