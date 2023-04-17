@@ -1,13 +1,13 @@
-require("dotenv").config();
+// require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const app = express();
 const bcrypt = require("bcryptjs");
-// const path=require('path');
+
 const PORT = process.env.PORT || 8000;
 const jwt = require("jsonwebtoken");
-// require('./db/conn');
+
 const auth = require("./middleware/auth");
 const transaction = require("./routes/transaction");
 const colors = require("colors");
@@ -56,8 +56,8 @@ app.post("/registration", async (req, res) => {
       //     httpOnly:true,
       // });
 
-      const hashpssd = await transactionDetails.hashPassword();
-      console.log(hashpssd, "hashpssd");
+      // const hashpssd = await transactionDetails.hashPassword();
+      // console.log(hashpssd, "hashpssd");
 
       const data = await transactionDetails.save();
       console.log(data, "data while register");
@@ -71,60 +71,69 @@ app.post("/registration", async (req, res) => {
   }
 });
 
-app.get("/logout", auth, async (req, res) => {
-  // console.log(`Token : ${req.cookies.jwt}`);
-  try {
-    console.log("logout started ");
-    res.clearCookie("jwt");
-    // IF WE DON'T DO THIS THEN WE HAVE COOKIES OF JWT (IN WHICH THE DATA IS CLEAR ), SO, I AGREE WE CAN'T ABLE TO ACCESS THE SITES OF AUTH
-    // BUT THAT EMPTY COOKIE CAN'T REMOVE THIS CAN REMOVE AFTER REFRESHING THE PAGE
-    // AUTOMATICALLY
-    // SO , AVOID THAT REFRESHING WE USE SAVE METHOD..
-    req.userdetails.tokens = req.userdetails.tokens.filter((curele) => {
-      console.log(
-        `value of cur token : ${curele.token} and req.token :${req.tokn}`
-      );
+// app.get("/logout", auth, async (req, res) => {
+//   // console.log(`Token : ${req.cookies.jwt}`);
+//   try {
+//     console.log("logout started ");
+//     res.clearCookie("jwt");
+//     // IF WE DON'T DO THIS THEN WE HAVE COOKIES OF JWT (IN WHICH THE DATA IS CLEAR ), SO, I AGREE WE CAN'T ABLE TO ACCESS THE SITES OF AUTH
+//     // BUT THAT EMPTY COOKIE CAN'T REMOVE THIS CAN REMOVE AFTER REFRESHING THE PAGE
+//     // AUTOMATICALLY
+//     // SO , AVOID THAT REFRESHING WE USE SAVE METHOD..
+//     req.userdetails.tokens = req.userdetails.tokens.filter((curele) => {
+//       console.log(
+//         `value of cur token : ${curele.token} and req.token :${req.tokn}`
+//       );
 
-      return curele.token !== req.tokn;
-    });
-    const data = await req.userdetails.save();
-    res.status(200).send("logout successfully");
-  } catch (e) {
-    res.status(500).send(e);
-  }
-});
+//       return curele.token !== req.tokn;
+//     });
+//     // const data = await req.userdetails.save();
+//     res.status(200).send("logout successfully");
+//   } catch (e) {
+//     res.status(500).send(e);
+//   }
+// });
+// app.get("/logout", (req, res) => {
+//   console.log("logout starts");
+//   // Remove the email from the localStorage
+//   localStorage.removeItem("email");
+// IMPORTANT : localStorage is not defined or used in backend..
+
+//   // Redirect the user to the login page
+//   // res.redirect("/login");
+//   res.send(200);
+// });
 
 app.post("/login", async (req, res) => {
   try {
     const myemail = req.body.email;
     const mypassword = req.body.password;
-    console.log(myemail);
-    console.log(mypassword);
+    console.log(myemail, "myemail login");
+    console.log(mypassword, "pass login");
 
     // const duppass=password;
     // const cpas=await bcrypt.hash(duppass,10);
     // console.log(cpas);
 
     const useremail = await Transaction.findOne({ email: myemail });
-    console.log(useremail);
+    console.log(useremail, "user find login");
     const ismatch = await bcrypt.compare(mypassword, useremail.password);
-    console.log(ismatch);
+    console.log(ismatch, "match or not (pass) login ");
     //useremail is the instance of Register..
-    const token1 = await useremail.createToken();
-    console.log(token1);
+    // const token1 = await useremail.createToken();
+    // console.log(token1);
 
     // create a cookie..
-    res.cookie("jwt", token1, {
-      // expires:new Date(Date.now()+50000),
-      httpOnly: true,
-      // secure:true
-      // IF WE DID secure:true then it will only work on htpps..
-    });
-
+    // res.cookie("jwt", token1, {
+    //   // expires:new Date(Date.now()+50000),
+    //   httpOnly: true,
+    //   // secure:true
+    //   // IF WE DID secure:true then it will only work on htpps..
+    // });
+    console.log(`ismatch : ${ismatch}`);
     if (ismatch) {
-      const data = await useremail.save();
-      console.log(data);
-      // res.status(200).send("");
+      // const data = await useremail.save();
+      res.status(200);
       res.redirect("home");
     } else {
       res.send("Invalid Detailsssss");
